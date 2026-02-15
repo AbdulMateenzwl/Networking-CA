@@ -1,0 +1,81 @@
+---
+- name: Deploy Docker web application
+  hosts: webservers
+  become: yes
+
+  vars:
+    app_dir: /opt/app
+    image_name: webapp:latest
+    container_name: webapp
+
+  tasks:
+    - name: Create app directory on VM
+      ansible.builtin.file:
+        path: "{{ app_dir }}"
+        state: directory
+        owner: mateen
+        group: mateen
+        mode: "0755"
+
+    - name: Copy app files to VM
+      ansible.builtin.copy:
+        src: ../app/
+        dest: "{{ app_dir }}/"
+        owner: mateen
+        group: mateen
+        mode: "0644"
+
+    - name: Remove container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: absent
+
+    - name: Remove old image if exists
+      community.docker.docker_image:
+        name: "{{ image_name }}"
+        state: absent
+
+    - name: Build Docker image
+      community.docker.docker_image_build:
+        name: "{{ image_name }}"
+        path: "{{ app_dir }}"
+        dockerfile: Dockerfile
+      register: build_output
+
+    - name: Show build output
+      ansible.builtin.debug:
+        var: build_output.stdout_lines
+
+    - name: Start the container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        ports:
+          - "8080:80"
+
+    - name: Wait for container to be ready
+      ansible.builtin.pause:
+        seconds: 5
+
+    - name: Verify container is running
+      ansible.builtin.shell: docker ps --filter "name={{ container_name }}" --format "{{ '{{' }}.Status{{ '}}' }}"
+      register: container_status
+      become_user: mateen
+
+    - name: Show container status
+      ansible.builtin.debug:
+        msg: "Container status: {{ container_status.stdout }}"
+
+    - name: Test app is responding
+      ansible.builtin.uri:
+        url: "http://localhost:8080"
+        status_code: 200
+      register: app_response
+
+    - name: Deployment successful
+      ansible.builtin.debug:
+        msg:
+          - "Deployment complete!"
+          - "App is live at: http://{{ ansible_host }}:8080"
+          - "Container: {{ container_name }} is running"

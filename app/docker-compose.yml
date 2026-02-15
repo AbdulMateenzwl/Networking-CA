@@ -1,0 +1,14 @@
+services:
+  webapp:
+    build: .
+
+    # Name the running container
+    container_name: webapp
+
+    # Map port 8080 on the VM to port 80 inside the container
+    # So: http://YOUR_VM_IP:8080 → container port 80 → nginx → index.html
+    ports:
+      - "8080:80"
+
+    # Always restart the container if it crashes or VM reboots
+    restart: always

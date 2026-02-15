@@ -1,0 +1,21 @@
+---
+- name: Configure Azure VM for Docker deployment
+  hosts: webservers
+  become: yes
+
+  pre_tasks:
+    - name: Display target server info
+      ansible.builtin.debug:
+        msg: "Configuring server: {{ inventory_hostname }} ({{ ansible_host }})"
+
+  roles:
+    - configuration
+
+  post_tasks:
+    - name: Final confirmation
+      ansible.builtin.debug:
+        msg: |
+          Setup complete on {{ inventory_hostname }}!
+          Docker is installed and will auto-start on boot.
+          App directory is ready at /opt/app
+          You can now SSH in and run: docker run hello-world

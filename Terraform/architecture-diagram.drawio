@@ -1,0 +1,104 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.5.2">
+  <diagram id="f10B8b9VvjeA9bF5sE0e" name="Page-1">
+    <mxGraphModel dx="1590" dy="901" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;fontStyle=1;fontColor=#1A202C;" value="Azure Infrastructure Setup (Part 1)" vertex="1">
+          <mxGeometry height="40" width="300" x="400" y="12" as="geometry" />
+        </mxCell>
+        <mxCell id="title2" parent="1" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=12;fontColor=#718096;" value="Provisioned by Terraform" vertex="1">
+          <mxGeometry height="20" width="300" x="405" y="52" as="geometry" />
+        </mxCell>
+        <mxCell id="internet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#3182CE;strokeWidth=2;fontSize=13;arcSize=15;" value="&lt;b&gt;🌐 Internet&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:11px&#39;&gt;Users / CI-CD Pipeline&lt;/font&gt;" vertex="1">
+          <mxGeometry height="55" width="180" x="465" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="rg" parent="1" style="swimlane;html=1;childLayout=stackLayout;horizontal=1;startSize=24;fillColor=none;strokeColor=#E53E3E;strokeWidth=2.5;dashed=1;dashPattern=10 5;fontColor=#E53E3E;fontStyle=1;fontSize=12;arcSize=5;swimlaneLine=0;" value="📦 Resource Group" vertex="1">
+          <mxGeometry height="520" width="940" x="80" y="175" as="geometry">
+            <mxRectangle height="30" width="150" x="80" y="175" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rg_inner" parent="rg" style="swimlane;html=1;startSize=0;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="496" width="940" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#38A169;strokeWidth=2;dashed=1;dashPattern=8 4;fontSize=11;fontStyle=1;fontColor=#38A169;verticalAlign=top;arcSize=5;" value="🔗 Virtual Network (10.0.0.0/16)" vertex="1">
+          <mxGeometry height="460" width="890" x="105" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFBEB;strokeColor=#D69E2E;strokeWidth=2;dashed=1;dashPattern=6 3;fontSize=11;fontStyle=1;fontColor=#D69E2E;verticalAlign=top;arcSize=5;" value="🔒 Subnet (10.0.1.0/24)" vertex="1">
+          <mxGeometry height="400" width="840" x="130" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF5F5;strokeColor=#FC8181;strokeWidth=2;fontSize=12;fontColor=#C53030;verticalAlign=top;arcSize=8;" value="&lt;b&gt;🛡️ NSG&lt;/b&gt;" vertex="1">
+          <mxGeometry height="310" width="210" x="155" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_label" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=10;fontColor=#744210;" value="Inbound Rules:" vertex="1">
+          <mxGeometry height="20" width="210" x="155" y="295" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_rule1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FED7D7;strokeColor=none;fontSize=10;fontColor=#742A2A;" value="Port 22 — SSH (your IP)" vertex="1">
+          <mxGeometry height="24" width="184" x="168" y="315" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_rule2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=none;fontSize=10;fontColor=#22543D;" value="Port 80 — HTTP" vertex="1">
+          <mxGeometry height="24" width="184" x="168" y="344" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_rule3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#C6F6D5;strokeColor=none;fontSize=10;fontColor=#22543D;" value="Port 443 — HTTPS" vertex="1">
+          <mxGeometry height="24" width="184" x="168" y="373" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_rule4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=none;fontSize=10;fontColor=#2A4365;" value="Port 8080 — App" vertex="1">
+          <mxGeometry height="24" width="184" x="168" y="402" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg_outbound" parent="1" style="text;html=1;align=center;strokeColor=none;fillColor=none;fontSize=10;fontColor=#718096;" value="Outbound: All Allow" vertex="1">
+          <mxGeometry height="20" width="210" x="155" y="435" as="geometry" />
+        </mxCell>
+        <mxCell id="vm" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF8FF;strokeColor=#3182CE;strokeWidth=2.5;fontSize=13;fontColor=#2B6CB0;verticalAlign=top;arcSize=8;" value="&lt;b&gt;🖥️ Linux VM&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Ubuntu 24.04 LTS&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot;&gt;Size: Standard_B1s&lt;/font&gt;" vertex="1">
+          <mxGeometry height="310" width="250" x="430" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="nic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#BEE3F8;strokeColor=none;fontSize=10;fontColor=#2B6CB0;" value="&lt;b&gt;🔌 NIC&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:9px&#39;&gt;Private IP: Dynamic&lt;/font&gt;" vertex="1">
+          <mxGeometry height="45" width="220" x="445" y="335" as="geometry" />
+        </mxCell>
+        <mxCell id="docker" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E6FFFA;strokeColor=#38B2AC;strokeWidth=1.5;fontSize=11;fontColor=#234E52;" value="&lt;b&gt;🐳 Docker Engine&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:9px&#39;&gt;Installed via cloud-init&lt;/font&gt;&lt;br/&gt;&lt;font style=&#39;font-size:9px&#39;&gt;Auto-starts on boot&lt;/font&gt;" vertex="1">
+          <mxGeometry height="65" width="220" x="445" y="392" as="geometry" />
+        </mxCell>
+        <mxCell id="osdisk" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FAF5FF;strokeColor=#9F7AEA;strokeWidth=1.5;fontSize=10;fontColor=#553C9A;" value="💾 OS Disk — 30 GB (SSD)" vertex="1">
+          <mxGeometry height="35" width="220" x="445" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="pip" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F0FFF4;strokeColor=#38A169;strokeWidth=2;fontSize=12;fontColor=#276749;arcSize=15;" value="&lt;b&gt;🌍 Public IP&lt;/b&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Static&lt;/font&gt;&lt;br/&gt;&lt;font style=&#39;font-size:10px&#39;&gt;Standard SKU&lt;/font&gt;" vertex="1">
+          <mxGeometry height="80" width="140" x="760" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow1" edge="1" parent="1" source="internet" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#3182CE;strokeWidth=2;dashed=1;dashPattern=5 3;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=-0.003;exitY=0.54;exitDx=0;exitDy=0;exitPerimeter=0;" target="nsg" value="">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="110" />
+            </Array>
+            <mxPoint x="460" y="110" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arrow2" edge="1" parent="1" source="nsg" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#FC8181;strokeWidth=2;dashed=1;dashPattern=5 3;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="nic" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arrow3" edge="1" parent="1" source="pip" style="edgeStyle=orthogonalEdgeStyle;html=1;strokeColor=#38A169;strokeWidth=2;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="nic" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#E2E8F0;strokeWidth=1;" value="" vertex="1">
+          <mxGeometry height="40" width="725" x="180" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#E53E3E;" value="● Resource Group" vertex="1">
+          <mxGeometry height="24" width="130" x="190" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#38A169;" value="● Virtual Network / Subnet" vertex="1">
+          <mxGeometry height="24" width="160" x="325" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#FC8181;" value="● NSG (Firewall)" vertex="1">
+          <mxGeometry height="24" width="110" x="490" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#3182CE;" value="● VM + NIC" vertex="1">
+          <mxGeometry height="24" width="90" x="605" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="leg5" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#38B2AC;" value="● Docker Engine" vertex="1">
+          <mxGeometry height="24" width="110" x="700" y="728" as="geometry" />
+        </mxCell>
+        <mxCell id="leg6" parent="1" style="text;html=1;align=left;strokeColor=none;fillColor=none;fontSize=10;fontColor=#38A169;" value="● Public IP" vertex="1">
+          <mxGeometry height="24" width="90" x="815" y="728" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

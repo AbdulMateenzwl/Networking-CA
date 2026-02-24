@@ -6,15 +6,15 @@ This folder contains Terraform scripts to provision a complete Azure infrastruct
 
 ## Resources Created
 
-| Resource | Name | Purpose |
-|---|---|---|
-| Resource Group | `NetworkingCA-rg` | Container for all resources |
-| Virtual Network | `NetworkingCA-vnet` | Isolated private network (10.0.0.0/16) |
-| Subnet | `NetworkingCA-subnet` | VM subnet (10.0.1.0/24) |
-| Network Security Group | `NetworkingCA-nsg` | Firewall rules (ports 22, 80, 8080) |
-| Public IP | `NetworkingCA-pip` | Static public IP for the VM (Standard SKU) |
-| Network Interface | `NetworkingCA-nic` | NIC linking VM to subnet & public IP |
-| Linux VM | `NetworkingCA-vm` | Ubuntu 24.04 LTS, Standard_B1s |
+| Resource               | Name                  | Purpose                                    |
+| ---------------------- | --------------------- | ------------------------------------------ |
+| Resource Group         | `NetworkingCA-rg`     | Container for all resources                |
+| Virtual Network        | `NetworkingCA-vnet`   | Isolated private network (10.0.0.0/16)     |
+| Subnet                 | `NetworkingCA-subnet` | VM subnet (10.0.1.0/24)                    |
+| Network Security Group | `NetworkingCA-nsg`    | Firewall rules (ports 22, 80, 8080)        |
+| Public IP              | `NetworkingCA-pip`    | Static public IP for the VM (Standard SKU) |
+| Network Interface      | `NetworkingCA-nic`    | NIC linking VM to subnet & public IP       |
+| Linux VM               | `NetworkingCA-vm`     | Ubuntu 24.04 LTS, Standard_B1s             |
 
 > Note: Resource names use the `project_name` variable as a prefix. The default value is `NetworkingCA` as set in `terraform.tfvars`.
 
@@ -23,11 +23,13 @@ This folder contains Terraform scripts to provision a complete Azure infrastruct
 ## Prerequisites
 
 1. **Azure CLI** installed and logged in:
+
    ```bash
    az login
    ```
 
 2. **Terraform** installed (>= 1.3.0):
+
    ```bash
    brew install terraform
    ```
@@ -44,6 +46,7 @@ This folder contains Terraform scripts to provision a complete Azure infrastruct
 ### Step 1 — Review your variables
 
 Open `terraform.tfvars` and confirm the values match your setup:
+
 - `admin_username` → the Linux user created on the VM (default: `mateen`)
 - `ssh_public_key_path` → path to your SSH public key (default: `~/.ssh/id_ed25519.pub`)
 - `location` → Azure region available on your subscription (default: `northeurope`)
@@ -77,6 +80,7 @@ terraform output
 ```
 
 You will see:
+
 - `public_ip_address` — the VM's public IP
 - `ssh_command` — copy-paste to SSH in
 - `app_url` — where your web app will be accessible after Ansible deploys it

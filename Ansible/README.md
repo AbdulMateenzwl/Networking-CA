@@ -8,6 +8,7 @@ Ansible connects over SSH from the local machine and executes all steps
 automatically in the correct order.
 
 There are **two separate playbooks**:
+
 - `setup.yml` — installs Docker and configures the VM (run once after Terraform)
 - `deploy.yml` — copies the app and runs it via Docker Compose (run on every deployment)
 
@@ -84,17 +85,17 @@ Ansible/
 
 ### File Descriptions
 
-| File | Purpose |
-|---|---|
-| `ansible.cfg` | Sets inventory path, disables host key checking, enables SSH pipelining |
-| `setup.yml` | Entry point for VM setup — targets webservers and calls the `configuration` role |
-| `deploy.yml` | Entry point for deployment — targets webservers and calls the `deploy` role |
-| `group_vars/all.yml` | Shared variable `current_user: mateen` — available to both roles automatically |
-| `inventory/hosts.ini` | Defines the VM host — IP, SSH user (`mateen`), ed25519 key path |
-| `roles/configuration/tasks/main.yml` | Installs Docker Engine + docker-compose-plugin, configures systemd and user group |
-| `roles/configuration/handlers/main.yml` | Restarts Docker service only when triggered by a change |
-| `roles/deploy/defaults/main.yml` | Default `app_dir: /opt/app` — overridable per run |
-| `roles/deploy/tasks/main.yml` | Copies app files, runs `docker compose up --build`, verifies health |
+| File                                    | Purpose                                                                           |
+| --------------------------------------- | --------------------------------------------------------------------------------- |
+| `ansible.cfg`                           | Sets inventory path, disables host key checking, enables SSH pipelining           |
+| `setup.yml`                             | Entry point for VM setup — targets webservers and calls the `configuration` role  |
+| `deploy.yml`                            | Entry point for deployment — targets webservers and calls the `deploy` role       |
+| `group_vars/all.yml`                    | Shared variable `current_user: mateen` — available to both roles automatically    |
+| `inventory/hosts.ini`                   | Defines the VM host — IP, SSH user (`mateen`), ed25519 key path                   |
+| `roles/configuration/tasks/main.yml`    | Installs Docker Engine + docker-compose-plugin, configures systemd and user group |
+| `roles/configuration/handlers/main.yml` | Restarts Docker service only when triggered by a change                           |
+| `roles/deploy/defaults/main.yml`        | Default `app_dir: /opt/app` — overridable per run                                 |
+| `roles/deploy/tasks/main.yml`           | Copies app files, runs `docker compose up --build`, verifies health               |
 
 ---
 
@@ -105,11 +106,13 @@ Ansible/
 **Install Ansible on your local machine (not the VM):**
 
 Installation instructions: https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+
 ```bash
 brew install ansible
 ```
 
 Verify:
+
 ```bash
 ansible --version
 ```
@@ -131,6 +134,7 @@ ansible all -m ping
 ```
 
 Expected output:
+
 ```
 test-vm | SUCCESS => { "ping": "pong" }
 ```
@@ -152,6 +156,7 @@ ansible-playbook deploy.yml
 This copies the app files, builds the Docker image via Compose, and starts the container.
 
 Each task shows one of:
+
 - `ok` — already in desired state, no change needed
 - `changed` — Ansible applied a change
 - `failed` — something went wrong, check the error output
@@ -173,6 +178,7 @@ curl http://localhost:8080          # should return HTML
 ## Key Concepts
 
 ### Idempotency
+
 Running either playbook multiple times is safe. If Docker is already installed
 or the container is already running, Ansible skips those steps and shows `ok`.
 
@@ -183,22 +189,28 @@ ansible-playbook deploy.yml
 ```
 
 ### Shared Variables via group_vars
+
 `group_vars/all.yml` holds `current_user: mateen`. Ansible loads this automatically
 for all hosts — no import needed in playbooks or roles. Both roles can use
 `{{ current_user }}` directly.
 
 ### Roles
+
 Each role bundles related tasks, handlers, and defaults together:
+
 - `configuration` — owns everything about Docker installation
 - `deploy` — owns everything about running the app
 
 ### Handlers
+
 `roles/configuration/handlers/main.yml` restarts Docker only when the Docker
 Engine installation task reports a change. It does not restart on every run.
 
 ---
-# Architecture Diagram
-See `ansible-flow.drawio.png` for a visual overview of all deployed resources and their relationships.
+
+## Architecture Diagram
+
+See `ansible-flow.drawio.png` for a visual overview of all steps.
 
 ![Architecture Diagram](ansible-flow.drawio.png)
 
@@ -208,10 +220,10 @@ See `ansible-flow.drawio.png` for a visual overview of all deployed resources an
 
 List of frequent Ansible errors during setup and deployment, their causes, and how to fix them:
 
-| Error | Cause | Fix |
-|---|---|---|
-| `UNREACHABLE` | Wrong IP or VM is off | Check `hosts.ini` IP, verify VM is running in Azure Portal |
-| `Permission denied (publickey)` | Wrong SSH key path | Ensure `~/.ssh/id_ed25519` exists and matches the key on the VM |
-| `Python not found` | Python not on VM | SSH in and run: `sudo apt install python3` |
-| `FAILED - RETRYING` on Docker install | Network issue on VM | Wait and re-run `setup.yml` |
-| `community.docker not found` | Collection not installed | Run: `ansible-galaxy collection install community.docker` |
+| Error                                 | Cause                    | Fix                                                             |
+| ------------------------------------- | ------------------------ | --------------------------------------------------------------- |
+| `UNREACHABLE`                         | Wrong IP or VM is off    | Check `hosts.ini` IP, verify VM is running in Azure Portal      |
+| `Permission denied (publickey)`       | Wrong SSH key path       | Ensure `~/.ssh/id_ed25519` exists and matches the key on the VM |
+| `Python not found`                    | Python not on VM         | SSH in and run: `sudo apt install python3`                      |
+| `FAILED - RETRYING` on Docker install | Network issue on VM      | Wait and re-run `setup.yml`                                     |
+| `community.docker not found`          | Collection not installed | Run: `ansible-galaxy collection install community.docker`       |

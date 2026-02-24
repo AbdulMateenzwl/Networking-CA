@@ -142,17 +142,18 @@ resource "azurerm_subnet_network_security_group_association" "main" {
 
 # -----------------------------------------------------------------------------
 # PUBLIC IP ADDRESS
-# This is how the outside world reaches our VM. "Dynamic" means Azure assigns
-# the IP when the VM starts — it can change if the VM is deallocated and
-# restarted. "Basic" SKU is used because Standard is often restricted on
-# student/free-tier Azure accounts.
+# This is how the outside world reaches our VM. "Static" means Azure reserves
+# the same IP permanently — it won't change when the VM is stopped or restarted.
+# "Standard" SKU is required for Static allocation. If your student subscription
+# blocks Standard SKU, fall back to Basic + Dynamic and update VM_HOST in GitHub
+# secrets manually after each VM restart.
 # -----------------------------------------------------------------------------
 resource "azurerm_public_ip" "main" {
   name                = "${var.project_name}-pip"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
-  allocation_method   = "Dynamic" # Basic SKU requires Dynamic allocation
-  sku                 = "Basic"   # Standard SKU is often blocked for students
+  allocation_method   = "Static"  # IP stays the same across VM restarts
+  sku                 = "Standard" # Standard SKU is required for Static allocation
 }
 
 # -----------------------------------------------------------------------------

@@ -12,7 +12,7 @@ This folder contains Terraform scripts to provision a complete Azure infrastruct
 | Virtual Network | `NetworkingCA-vnet` | Isolated private network (10.0.0.0/16) |
 | Subnet | `NetworkingCA-subnet` | VM subnet (10.0.1.0/24) |
 | Network Security Group | `NetworkingCA-nsg` | Firewall rules (ports 22, 80, 8080) |
-| Public IP | `NetworkingCA-pip` | Dynamic public IP for the VM (Basic SKU) |
+| Public IP | `NetworkingCA-pip` | Static public IP for the VM (Standard SKU) |
 | Network Interface | `NetworkingCA-nic` | NIC linking VM to subnet & public IP |
 | Linux VM | `NetworkingCA-vm` | Ubuntu 24.04 LTS, Standard_B1s |
 
@@ -25,17 +25,11 @@ This folder contains Terraform scripts to provision a complete Azure infrastruct
 1. **Azure CLI** installed and logged in:
    ```bash
    az login
-   az account set --subscription "YOUR_SUBSCRIPTION_ID"
    ```
 
 2. **Terraform** installed (>= 1.3.0):
    ```bash
-   # macOS
    brew install terraform
-   # Windows
-   choco install terraform
-   # Linux
-   sudo snap install terraform --classic
    ```
 
 3. **SSH key pair** generated (ed25519 is used in this project):

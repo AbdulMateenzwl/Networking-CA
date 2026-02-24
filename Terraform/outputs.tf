@@ -18,9 +18,8 @@ output "vm_name" {
   value       = azurerm_linux_virtual_machine.main.name
 }
 
-# The public IP is dynamic so we don't know it until after apply.
-# Note: with Basic SKU + Dynamic allocation, this may show as empty until
-# the VM is fully running — you can re-run "terraform output" after a minute.
+# The public IP is static so it stays the same after every VM restart.
+# Copy this into your hosts.ini and GitHub VM_HOST secret \u2014 it won't change.
 output "public_ip_address" {
   description = "Public IP address of the VM — use this to SSH and access the app"
   value       = azurerm_public_ip.main.ip_address

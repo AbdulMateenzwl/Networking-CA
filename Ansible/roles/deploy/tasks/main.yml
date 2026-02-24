@@ -1,0 +1,54 @@
+---
+- name: Create app directory on VM
+  ansible.builtin.file:
+    path: "{{ app_dir }}"
+    state: directory
+    owner: "{{ current_user }}"
+    group: "{{ current_user }}"
+    mode: "0755"
+
+- name: Copy app files to VM
+  ansible.builtin.copy:
+    src: ../app/
+    dest: "{{ app_dir }}/"
+    owner: "{{ current_user }}"
+    group: "{{ current_user }}"
+    mode: "0644"
+
+- name: Tear down existing containers and images
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    state: absent
+    remove_images: all
+    remove_orphans: yes
+  ignore_errors: yes
+
+- name: Build and start containers with Docker Compose
+  community.docker.docker_compose_v2:
+    project_src: "{{ app_dir }}"
+    state: present
+    build: always
+  register: compose_output
+
+- name: Show compose output
+  ansible.builtin.debug:
+    var: compose_output.containers
+
+- name: Wait for container to be ready
+  ansible.builtin.pause:
+    seconds: 5
+
+- name: Verify container is running
+  community.docker.docker_container_info:
+    name: webapp
+  register: container_status
+
+- name: Show container status
+  ansible.builtin.debug:
+    msg: "Container status: {{ container_status.container.State.Status }}"
+
+- name: Test app is responding
+  ansible.builtin.uri:
+    url: "http://localhost:8080"
+    status_code: 200
+  register: app_response

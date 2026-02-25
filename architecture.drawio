@@ -1,0 +1,294 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.5.2">
+  <diagram name="Complete Architecture — All 4 Parts" id="complete-arch">
+    <mxGraphModel dx="2226" dy="2862" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1600" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" style="text;html=1;strokeColor=#001DBC;fillColor=#0050ef;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=22;fontStyle=1;fontColor=#ffffff;rounded=1;" value="DevOps Pipeline: Infrastructure Automation and Container Deployment on Azure" vertex="1">
+          <mxGeometry height="45" width="880" x="150" y="-50" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=13;fontStyle=2;fontColor=#718096;" value="Parts 1 → 2 → 3 → 4 | Each part builds on the previous" vertex="1">
+          <mxGeometry height="25" width="400" x="400" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="650" width="420" x="40" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d6b656;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="50" width="360" x="70" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=14;fontColor=#ffffff;" value="PART 1 - Infrastructure Setup" vertex="1">
+          <mxGeometry height="50" width="360" x="70" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1-tool" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontSize=11;fontColor=#7D5A00;" value="🔧 Tool: Terraform (HashiCorp)" vertex="1">
+          <mxGeometry height="25" width="420" x="40" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-local" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=11;" value="📄 main.tf&#xa;📄 variables.tf&#xa;📄 outputs.tf" vertex="1">
+          <mxGeometry height="60" width="170" x="65" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="tf-cmd" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A202C;strokeColor=#1A202C;fontSize=11;fontStyle=1;fontColor=#ffffff;" value="terraform apply" vertex="1">
+          <mxGeometry height="35" width="180" x="245" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="azure-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#d6b656;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="420" width="370" x="65" y="268" as="geometry" />
+        </mxCell>
+        <mxCell id="azure-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;" value="☁️ Azure Resources (Norway East)" vertex="1">
+          <mxGeometry height="28" width="370" x="65" y="273" as="geometry" />
+        </mxCell>
+        <mxCell id="rg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;" value="📦 Resource Group" vertex="1">
+          <mxGeometry height="28" width="330" x="85" y="308" as="geometry" />
+        </mxCell>
+        <mxCell id="vnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="🔗 Virtual Network (10.0.0.0/16)" vertex="1">
+          <mxGeometry height="28" width="330" x="85" y="346" as="geometry" />
+        </mxCell>
+        <mxCell id="subnet" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;" value="🔗 Subnet (10.0.1.0/24)" vertex="1">
+          <mxGeometry height="28" width="290" x="105" y="384" as="geometry" />
+        </mxCell>
+        <mxCell id="nsg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;" value="🛡️ NSG — Port 22, 80, 8080 inbound" vertex="1">
+          <mxGeometry height="28" width="330" x="85" y="422" as="geometry" />
+        </mxCell>
+        <mxCell id="pip" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;" value="🌍 Public IP Address (Static)" vertex="1">
+          <mxGeometry height="28" width="330" x="85" y="460" as="geometry" />
+        </mxCell>
+        <mxCell id="nic" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d6b656;fontSize=11;" value="🔌 Network Interface (NIC)" vertex="1">
+          <mxGeometry height="28" width="330" x="85" y="498" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="130" width="330" x="85" y="536" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-title2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=11;" value="🖥️ Linux VM — test-vm&#xa;Ubuntu 24.04 LTS | Standard B1s" vertex="1">
+          <mxGeometry height="35" width="330" x="85" y="541" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-ssh" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="🔐 SSH Key Authentication" vertex="1">
+          <mxGeometry height="25" width="140" x="100" y="582" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-port" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="📡 Port 8080 exposed" vertex="1">
+          <mxGeometry height="25" width="145" x="255" y="582" as="geometry" />
+        </mxCell>
+        <mxCell id="vm-os" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="💾 OS Disk 30GB Standard LRS" vertex="1">
+          <mxGeometry height="25" width="300" x="100" y="617" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="650" width="380" x="710" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6c8ebf;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="50" width="320" x="740" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=14;fontColor=#ffffff;" value="PART 2 — Configuration Management" vertex="1">
+          <mxGeometry height="50" width="340" x="730" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-tool" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontSize=11;fontColor=#1B4F8A;" value="🔧 Tool: Ansible (Red Hat)" vertex="1">
+          <mxGeometry height="25" width="380" x="710" y="155" as="geometry" />
+        </mxCell>
+        <mxCell id="ans-files" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;align=left;" value="📄 ansible.cfg&#xa;📄 inventory/hosts.ini&#xa;📄 setup.yml ⭐&#xa;📄 roles/configuration/tasks/main.yml&#xa;📄 roles/configuration/handlers/main.yml" vertex="1">
+          <mxGeometry height="95" width="340" x="730" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="ans-tasks-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;" value="Tasks run on VM (setup.yml):" vertex="1">
+          <mxGeometry height="22" width="340" x="730" y="293" as="geometry" />
+        </mxCell>
+        <mxCell id="at1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="1. apt-get update" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="318" as="geometry" />
+        </mxCell>
+        <mxCell id="at2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="2. Install curl, git, ca-certificates, gnupg" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="348" as="geometry" />
+        </mxCell>
+        <mxCell id="at3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="3. Add Docker GPG key" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="378" as="geometry" />
+        </mxCell>
+        <mxCell id="at4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="4. Add Docker apt repository" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="at5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="5. Install docker-ce, docker-ce-cli, containerd.io" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="438" as="geometry" />
+        </mxCell>
+        <mxCell id="at6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;" value="6. Enable Docker on boot (systemd)" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="468" as="geometry" />
+        </mxCell>
+        <mxCell id="at7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" value="7. Start Docker service immediately" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="498" as="geometry" />
+        </mxCell>
+        <mxCell id="at8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="8. Add user to docker group" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="528" as="geometry" />
+        </mxCell>
+        <mxCell id="at9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="9. Create /opt/app directory" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="558" as="geometry" />
+        </mxCell>
+        <mxCell id="at10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=10;" value="10. Verify Docker version and status" vertex="1">
+          <mxGeometry height="24" width="340" x="730" y="588" as="geometry" />
+        </mxCell>
+        <mxCell id="p2-result" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="✅ Docker installed and running&#xa;✅ Auto-starts on reboot&#xa;✅ /opt/app ready" vertex="1">
+          <mxGeometry height="55" width="340" x="730" y="625" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="650" width="400" x="710" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#82b366;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="50" width="340" x="740" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=14;fontColor=#ffffff;" value="PART 3 — Docker Container Deployment" vertex="1">
+          <mxGeometry height="50" width="280" x="770" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="p3-tool" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontSize=11;fontColor=#1A5C2A;" value="🔧 Tools: Docker + Nginx + Ansible" vertex="1">
+          <mxGeometry height="25" width="400" x="710" y="855" as="geometry" />
+        </mxCell>
+        <mxCell id="app-files" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;align=left;" value="📄 app/Dockerfile&#xa;📄 app/docker-compose.yml&#xa;📄 app/nginx.conf&#xa;📄 app/src/index.html&#xa;📄 ansible/deploy.yml ⭐" vertex="1">
+          <mxGeometry height="95" width="360" x="730" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="dep-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;" value="Ansible deploy.yml steps:" vertex="1">
+          <mxGeometry height="22" width="360" x="730" y="993" as="geometry" />
+        </mxCell>
+        <mxCell id="dt1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="1. Create /opt/app directory" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1018" as="geometry" />
+        </mxCell>
+        <mxCell id="dt2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="2. Copy app/ from machine to VM over SSH" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1048" as="geometry" />
+        </mxCell>
+        <mxCell id="dt3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="3. Tear down old containers and images" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1078" as="geometry" />
+        </mxCell>
+        <mxCell id="dt4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;" value="4. docker-compose build (fresh — no cache)" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1108" as="geometry" />
+        </mxCell>
+        <mxCell id="dt5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;fontStyle=1;" value="5. docker-compose up -d (start container)" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1138" as="geometry" />
+        </mxCell>
+        <mxCell id="dt6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="6. Wait 5 seconds for initialisation" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1168" as="geometry" />
+        </mxCell>
+        <mxCell id="dt7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=10;" value="7. Verify container state = running" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1198" as="geometry" />
+        </mxCell>
+        <mxCell id="dt8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="8. Test localhost:8080 returns HTTP 200 ✅" vertex="1">
+          <mxGeometry height="24" width="360" x="730" y="1228" as="geometry" />
+        </mxCell>
+        <mxCell id="docker-container" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f3ff;strokeColor=#0078d4;strokeWidth=2;" value="" vertex="1">
+          <mxGeometry height="115" width="360" x="730" y="1265" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=12;" value="🐳 Docker Container — webapp" vertex="1">
+          <mxGeometry height="25" width="360" x="730" y="1270" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-nginx" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=10;" value="🌐 Nginx — port 80 (inside container)" vertex="1">
+          <mxGeometry height="24" width="330" x="745" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-html" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#0078d4;fontSize=10;" value="📄 index.html — /usr/share/nginx/html/" vertex="1">
+          <mxGeometry height="24" width="330" x="745" y="1330" as="geometry" />
+        </mxCell>
+        <mxCell id="dc-port" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=9;fontStyle=2;" value="Port mapping: VM 8080 → Container 80 | restart: always" vertex="1">
+          <mxGeometry height="20" width="360" x="730" y="1357" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="650" width="400" x="60" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-header" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#9673a6;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="50" width="340" x="90" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=14;fontColor=#ffffff;" value="PART 4 — CI/CD Pipeline" vertex="1">
+          <mxGeometry height="50" width="260" x="130" y="800" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-tool" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=2;fontSize=11;fontColor=#4A235A;" value="🔧 Tool: GitHub Actions" vertex="1">
+          <mxGeometry height="25" width="400" x="60" y="855" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-trigger" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1A202C;strokeColor=#1A202C;fontSize=11;fontStyle=1;fontColor=#ffffff;" value="⚡ Trigger: git push to main branch" vertex="1">
+          <mxGeometry height="35" width="360" x="80" y="888" as="geometry" />
+        </mxCell>
+        <mxCell id="runner-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f0ff;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="310" width="360" x="80" y="933" as="geometry" />
+        </mxCell>
+        <mxCell id="runner-title2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontStyle=1;fontSize=11;" value="⚙️ GitHub Actions Runner (Ubuntu)" vertex="1">
+          <mxGeometry height="25" width="360" x="80" y="938" as="geometry" />
+        </mxCell>
+        <mxCell id="ps1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=10;" value="Step 1 — Checkout repository" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="968" as="geometry" />
+        </mxCell>
+        <mxCell id="ps2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=10;" value="Step 2 — Install Ansible (apt-get)" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="998" as="geometry" />
+        </mxCell>
+        <mxCell id="ps3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" value="Step 3 — Write SSH key from secrets → ~/.ssh/id_rsa" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="1028" as="geometry" />
+        </mxCell>
+        <mxCell id="ps4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=10;" value="Step 4 — ssh-keyscan → known_hosts" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="1058" as="geometry" />
+        </mxCell>
+        <mxCell id="ps5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;fontSize=10;" value="Step 5 — Generate hosts.ini from secrets" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="1088" as="geometry" />
+        </mxCell>
+        <mxCell id="ps6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" value="Step 6 — ansible-playbook Ansible/deploy.yml" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="1118" as="geometry" />
+        </mxCell>
+        <mxCell id="ps7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" value="Step 7 — Print live URL to logs ✅" vertex="1">
+          <mxGeometry height="24" width="330" x="95" y="1148" as="geometry" />
+        </mxCell>
+        <mxCell id="secrets-box" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;fontStyle=1;" value="🔒 GitHub Secrets&#xa;VM_HOST | VM_USERNAME | VM_SSH_KEY" vertex="1">
+          <mxGeometry height="45" width="330" x="95" y="1183" as="geometry" />
+        </mxCell>
+        <mxCell id="reuse-label" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;fontStyle=2;" value="↑ Reuses ansible/deploy.yml from Part 3&#xa;No deployment logic duplicated" vertex="1">
+          <mxGeometry height="35" width="360" x="80" y="1253" as="geometry" />
+        </mxCell>
+        <mxCell id="p4-result" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" value="✅ Push code → Live in &lt;2 minutes&#xa;✅ No manual steps required&#xa;✅ Full pipeline log visible on GitHub" vertex="1">
+          <mxGeometry height="65" width="360" x="80" y="1300" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-1-2" edge="1" parent="1" source="p1-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#d6b656;strokeWidth=4;fontStyle=1;fontSize=11;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="p2-bg" value="VM ready&#xa;SSH configured">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-2-3" edge="1" parent="1" source="p2-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#6c8ebf;strokeWidth=4;fontStyle=1;fontSize=11;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.447;entryDx=0;entryDy=0;entryPerimeter=0;" target="p3-bg" value="Docker installed&#xa;/opt/app ready">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1160" y="395" />
+              <mxPoint x="1160" y="1061" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="arr-3-4" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#82b366;strokeWidth=4;fontStyle=1;fontSize=11;" value="deploy.yml reused&#xa;app/ files ready">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="1040" />
+              <mxPoint x="461" y="1040" />
+            </Array>
+            <mxPoint x="710" y="1040" as="sourcePoint" />
+            <mxPoint x="461" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="browser-final" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;strokeWidth=2;fontSize=12;fontStyle=1;" value="🌍 Browser&#xa;http://VM_IP:8080&#xa;✅ Web App Live" vertex="1">
+          <mxGeometry height="80" width="200" x="150" y="1500" as="geometry" />
+        </mxCell>
+        <mxCell id="arr-4-browser" edge="1" parent="1" source="p4-bg" style="edgeStyle=orthogonalEdgeStyle;rounded=0;strokeColor=#b85450;strokeWidth=3;fontStyle=1;fontSize=11;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.538;entryY=-0.004;entryDx=0;entryDy=0;entryPerimeter=0;" target="browser-final" value="Container running&#xa;port 8080">
+          <mxGeometry relative="1" x="-0.0251" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-bg" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;" value="" vertex="1">
+          <mxGeometry height="50" width="710" x="420" y="1510" as="geometry" />
+        </mxCell>
+        <mxCell id="leg-head" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontStyle=1;fontSize=11;" value="Legend:" vertex="1">
+          <mxGeometry height="20" width="60" x="435" y="1522.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb1" parent="1" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="" vertex="1">
+          <mxGeometry height="16" width="16" x="500" y="1526.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb1t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Part 1 — Terraform" vertex="1">
+          <mxGeometry height="16" width="110" x="522" y="1522.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb2" parent="1" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="16" width="16" x="645" y="1526.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb2t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Part 2 — Ansible Config" vertex="1">
+          <mxGeometry height="16" width="130" x="667" y="1522.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb3" parent="1" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="" vertex="1">
+          <mxGeometry height="16" width="16" x="810" y="1526.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb3t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Part 3 — Docker Deploy" vertex="1">
+          <mxGeometry height="16" width="130" x="832" y="1522.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb4" parent="1" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="" vertex="1">
+          <mxGeometry height="16" width="16" x="975" y="1526.5" as="geometry" />
+        </mxCell>
+        <mxCell id="lb4t" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=left;fontSize=10;" value="Part 4 — CI/CD Pipeline" vertex="1">
+          <mxGeometry height="16" width="140" x="997" y="1522.5" as="geometry" />
+        </mxCell>
+        <mxCell id="flow-summary" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontSize=13;fontStyle=1;" value="PART 1 - Infrastructure setup →  PART 2 - Configure Server →  PART 3 - Deploy Container  →  PART 4 - Automate with CI/CD  →  Live App ✅" vertex="1">
+          <mxGeometry height="40" width="860" x="190" y="1630" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
